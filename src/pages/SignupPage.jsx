@@ -33,7 +33,7 @@ export default function SignupPage() {
 
     setError("");
     // ✅ Navigate to Login page after successful signup
-    navigate("/LoginPage.jsx");
+    navigate("/LoginPage");
   };
 
   return (
