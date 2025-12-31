@@ -17,46 +17,53 @@ export default function SignupPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // 📱 Mobile number validation
     if (!/^\d{10}$/.test(phone)) {
       setError("Mobile number must be exactly 10 digits");
       return;
     }
 
-    // 🔐 Password validation
     if (!validatePassword(password)) {
       setError(
-        "Password must be at least 8 characters and include uppercase, lowercase, number, and special character"
+        "Password must be 8+ chars with uppercase, lowercase, number & special character"
       );
       return;
     }
 
     setError("");
-    // ✅ Navigate to Login page after successful signup
     navigate("/LoginPage");
   };
 
   return (
     <div className="min-h-screen w-screen flex justify-center items-center bg-gray-100">
       <div className="bg-white shadow-lg rounded-2xl p-8 w-[350px] h-[720px]">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-1 text-center">
+        <h2 className="text-2xl font-semibold text-gray-900 text-center">
           Create your <span className="text-[#6C63FF]">PopX</span> account
         </h2>
 
-        <form className="space-y-4 mt-6" onSubmit={handleSubmit}>
-          <div>
-            <label className="block text-sm font-medium mb-1">
-              Full Name *
-            </label>
-            <input
-              type="text"
-              required
-              className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-[#6C63FF]"
-            />
-          </div>
+        <form className="space-y-5 mt-8" onSubmit={handleSubmit}>
 
-          <div>
-            <label className="block text-sm font-medium mb-1">
+          {/* Floating Input */}
+          {[
+            { label: "Full Name", type: "text" },
+            { label: "Email address", type: "email" },
+            { label: "Company name", type: "text" },
+          ].map((f) => (
+            <div key={f.label} className="relative">
+              <label className="absolute -top-2 left-3 bg-white px-1 text-xs text-[#6C63FF] font-medium">
+                {f.label} *
+              </label>
+              <input
+                type={f.type}
+                required
+                placeholder={`Enter ${f.label.toLowerCase()}`}
+                className="w-full border border-gray-300 rounded-lg p-3 text-sm outline-none focus:ring-2 focus:ring-[#6C63FF]"
+              />
+            </div>
+          ))}
+
+          {/* Phone */}
+          <div className="relative">
+            <label className="absolute -top-2 left-3 bg-white px-1 text-xs text-[#6C63FF] font-medium">
               Phone number *
             </label>
             <input
@@ -65,47 +72,28 @@ export default function SignupPage() {
               onChange={(e) => setPhone(e.target.value)}
               placeholder="Enter 10 digit number"
               required
-              className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-[#6C63FF]"
+              className="w-full border border-gray-300 rounded-lg p-3 text-sm outline-none focus:ring-2 focus:ring-[#6C63FF]"
             />
           </div>
 
-          <div>
-            <label className="block text-sm font-medium mb-1">
-              Email address *
-            </label>
-            <input
-              type="email"
-              required
-              className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-[#6C63FF]"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-1">
+          {/* Password */}
+          <div className="relative">
+            <label className="absolute -top-2 left-3 bg-white px-1 text-xs text-[#6C63FF] font-medium">
               Password *
             </label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter strong password"
               required
-              className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-[#6C63FF]"
+              className="w-full border border-gray-300 rounded-lg p-3 text-sm outline-none focus:ring-2 focus:ring-[#6C63FF]"
             />
           </div>
 
+          {/* Agency */}
           <div>
-            <label className="block text-sm font-medium mb-1">
-              Company name *
-            </label>
-            <input
-              type="text"
-              required
-              className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-[#6C63FF]"
-            />
-          </div>
-
-          <div>
-            <p className="text-sm font-medium mb-2">
+            <p className="text-sm font-medium text-gray-700 mb-2">
               Are you an Agency? *
             </p>
             <div className="flex gap-6">
@@ -129,14 +117,15 @@ export default function SignupPage() {
             </div>
           </div>
 
-          {/* ❗ Error Message */}
+          {/* Error */}
           {error && (
             <p className="text-red-500 text-sm font-medium">{error}</p>
           )}
 
+          {/* Button */}
           <button
             type="submit"
-            className="w-full bg-[#6C63FF] text-black font-medium py-2 rounded-lg hover:bg-[#5b54e0]"
+            className="w-full bg-[#6C63FF] text-white font-semibold py-3 rounded-lg hover:bg-[#5a52e0] transition"
           >
             Create Account
           </button>
