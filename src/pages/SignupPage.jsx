@@ -30,7 +30,7 @@ export default function SignupPage() {
     }
 
     setError("");
-    navigate("/LoginPage");
+    navigate("/login");
   };
 
   return (
@@ -42,26 +42,20 @@ export default function SignupPage() {
 
         <form className="space-y-5 mt-8" onSubmit={handleSubmit}>
 
-          {/* Floating Input */}
-          {[
-            { label: "Full Name", type: "text" },
-            { label: "Email address", type: "email" },
-            { label: "Company name", type: "text" },
-          ].map((f) => (
-            <div key={f.label} className="relative">
-              <label className="absolute -top-2 left-3 bg-white px-1 text-xs text-[#6C63FF] font-medium">
-                {f.label} *
-              </label>
-              <input
-                type={f.type}
-                required
-                placeholder={`Enter ${f.label.toLowerCase()}`}
-                className="w-full border border-gray-300 rounded-lg p-3 text-sm outline-none focus:ring-2 focus:ring-[#6C63FF]"
-              />
-            </div>
-          ))}
+          {/* Full Name */}
+          <div className="relative">
+            <label className="absolute -top-2 left-3 bg-white px-1 text-xs text-[#6C63FF] font-medium">
+              Full Name *
+            </label>
+            <input
+              type="text"
+              required
+              placeholder="Enter full name"
+              className="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-[#6C63FF]"
+            />
+          </div>
 
-          {/* Phone */}
+          {/* Phone Number */}
           <div className="relative">
             <label className="absolute -top-2 left-3 bg-white px-1 text-xs text-[#6C63FF] font-medium">
               Phone number *
@@ -72,7 +66,20 @@ export default function SignupPage() {
               onChange={(e) => setPhone(e.target.value)}
               placeholder="Enter 10 digit number"
               required
-              className="w-full border border-gray-300 rounded-lg p-3 text-sm outline-none focus:ring-2 focus:ring-[#6C63FF]"
+              className="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-[#6C63FF]"
+            />
+          </div>
+
+          {/* Email */}
+          <div className="relative">
+            <label className="absolute -top-2 left-3 bg-white px-1 text-xs text-[#6C63FF] font-medium">
+              Email address *
+            </label>
+            <input
+              type="email"
+              required
+              placeholder="Enter email address"
+              className="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-[#6C63FF]"
             />
           </div>
 
@@ -87,7 +94,20 @@ export default function SignupPage() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter strong password"
               required
-              className="w-full border border-gray-300 rounded-lg p-3 text-sm outline-none focus:ring-2 focus:ring-[#6C63FF]"
+              className="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-[#6C63FF]"
+            />
+          </div>
+
+          {/* Company Name */}
+          <div className="relative">
+            <label className="absolute -top-2 left-3 bg-white px-1 text-xs text-[#6C63FF] font-medium">
+              Company name *
+            </label>
+            <input
+              type="text"
+              required
+              placeholder="Enter company name"
+              className="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-[#6C63FF]"
             />
           </div>
 
