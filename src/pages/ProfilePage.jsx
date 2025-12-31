@@ -5,10 +5,11 @@ export default function ProfilePage() {
   const location = useLocation();
   const { email } = location.state || { email: "marry@gmail.com" };
 
-  // Derive name from email (before @), capitalize first letter
+  // Derive name from email
   const nameFromEmail =
     email && email.includes("@")
-      ? email.split("@")[0].charAt(0).toUpperCase() + email.split("@")[0].slice(1)
+      ? email.split("@")[0].charAt(0).toUpperCase() +
+        email.split("@")[0].split("").slice(1).join("")
       : "Marry Doe";
 
   const [profilePic, setProfilePic] = useState(
@@ -28,26 +29,30 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-      <div className="bg-white w-full max-w-sm rounded-2xl shadow-lg overflow-hidden">
-        <div className="p-8">
+    <div className="min-h-screen bg-gray-100 flex justify-center">
+      <div className="bg-white w-full max-w-sm min-h-screen">
 
-          {/* Title */}
-          <h1 className="text-2xl font-bold text-gray-900 mb-8">
+        {/* Header */}
+        <div className="px-6 pt-6 pb-4 border-b border-gray-200">
+          <h1 className="text-lg font-semibold text-gray-900">
             Account Settings
           </h1>
+        </div>
+
+        {/* Content */}
+        <div className="px-6 py-5">
 
           {/* Profile Section */}
-          <div className="flex items-start gap-5 mb-8">
-            {/* Profile Picture with Edit Badge */}
+          <div className="flex items-start gap-4 mb-5">
+            
+            {/* Profile Picture */}
             <div className="relative">
               <img
                 src={profilePic}
                 alt="Profile"
-                className="w-24 h-24 rounded-full object-cover"
+                className="w-20 h-20 rounded-full object-cover"
               />
 
-              {/* Hidden File Input */}
               <input
                 type="file"
                 accept="image/*"
@@ -56,18 +61,18 @@ export default function ProfilePage() {
                 className="hidden"
               />
 
-              {/* Purple Pencil Edit Button */}
+              {/* Edit Icon */}
               <label
                 htmlFor="upload-profile-pic"
-                className="absolute bottom-0 right-0 w-8 h-8 bg-purple-600 rounded-full border-4 border-white flex items-center justify-center cursor-pointer shadow-md hover:bg-purple-700 transition"
+                className="absolute bottom-0 right-0 w-7 h-7 bg-purple-600 rounded-full border-2 border-white flex items-center justify-center cursor-pointer"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 text-white"
+                  className="h-3.5 w-3.5 text-white"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  strokeWidth={3}
+                  strokeWidth={2.5}
                 >
                   <path
                     strokeLinecap="round"
@@ -78,18 +83,25 @@ export default function ProfilePage() {
               </label>
             </div>
 
-            {/* Name and Email */}
+            {/* Name & Email */}
             <div>
-              <h2 className="text-xl font-semibold text-gray-900">
+              <h2 className="text-base font-medium text-gray-900">
                 {nameFromEmail}
               </h2>
-              <p className="text-gray-600">{email}</p>
+              <p className="text-sm text-gray-500">
+                {email}
+              </p>
             </div>
           </div>
 
-          {/* Exact Lorem Ipsum Text from Image */}
-          <p className="text-gray-600 leading-relaxed text-base">
-            Lorem Ipsum Dolor Sit Amet, Consetetur Sadipscing Elitr, Sed Diam Nonumy Eirmod Tempor Invidunt Ut Labore Et Dolore Magna Aliquam Erat. Sed Diam
+          {/* Divider */}
+          <div className="border-b border-dashed border-gray-300 mb-5"></div>
+
+          {/* Description */}
+          <p className="text-sm text-gray-600 leading-relaxed">
+            Lorem Ipsum Dolor Sit Amet, Consetetur Sadipscing Elitr, Sed Diam
+            Nonumy Eirmod Tempor Invidunt Ut Labore Et Dolore Magna Aliquam Erat.
+            Sed Diam
           </p>
 
         </div>
