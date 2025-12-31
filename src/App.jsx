@@ -8,27 +8,42 @@ export default function App() {
       <div className="bg-white shadow-xl w-[350px] h-[720px] rounded-2xl relative overflow-hidden flex flex-col justify-end p-10 text-center">
 
         {/* 🔶 Decorative Top Circles */}
-        <div className="absolute top-8 left-1/2 -translate-x-1/2">
-          <div className="relative w-[200px] h-[200px]">
-            {[1, 2, 3, 4, 5].map((num, index) => (
-              <div
-                key={num}
-                className="absolute w-8 h-8 rounded-full bg-yellow-400 text-white text-sm font-bold flex items-center justify-center"
-                style={{
-                  top: `${index * 32}px`,
-                  left: `${index * 24}px`,
-                }}
-              >
-                {num}
-              </div>
-            ))}
+<div className="absolute top-6 left-6">
+  <div className="relative w-[180px] h-[220px]">
 
-            {/* Circle 6 */}
-            <div className="absolute w-8 h-8 rounded-full bg-yellow-400 text-white text-sm font-bold flex items-center justify-center -top-6 left-6">
-              6
-            </div>
-          </div>
-        </div>
+    {/* 6 */}
+    <div className="absolute top-0 left-12 w-8 h-8 rounded-full bg-yellow-400 text-white text-sm font-bold flex items-center justify-center">
+      6
+    </div>
+
+    {/* 1 */}
+    <div className="absolute top-8 left-0 w-8 h-8 rounded-full bg-yellow-400 text-white text-sm font-bold flex items-center justify-center">
+      1
+    </div>
+
+    {/* 2 */}
+    <div className="absolute top-20 left-10 w-8 h-8 rounded-full bg-yellow-400 text-white text-sm font-bold flex items-center justify-center">
+      2
+    </div>
+
+    {/* 3 */}
+    <div className="absolute top-32 left-24 w-8 h-8 rounded-full bg-yellow-400 text-white text-sm font-bold flex items-center justify-center">
+      3
+    </div>
+
+    {/* 4 */}
+    <div className="absolute top-44 left-44 w-8 h-8 rounded-full bg-yellow-400 text-white text-sm font-bold flex items-center justify-center">
+      4
+    </div>
+
+    {/* 5 */}
+    <div className="absolute top-56 left-64 w-8 h-8 rounded-full bg-yellow-400 text-white text-sm font-bold flex items-center justify-center">
+      5
+    </div>
+
+  </div>
+</div>
+
 
         {/* Content */}
         <h2 className="text-2xl font-bold text-gray-800 mb-2">
