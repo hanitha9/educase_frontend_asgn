@@ -1,12 +1,39 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function SignupPage() {
   const navigate = useNavigate();
 
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const validatePassword = (pwd) => {
+    const strongRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+    return strongRegex.test(pwd);
+  };
+
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent page refresh
-    // ✅ After signup success, navigate to App.jsx (home)
-    navigate("/");
+    e.preventDefault();
+
+    // 📱 Mobile number validation
+    if (!/^\d{10}$/.test(phone)) {
+      setError("Mobile number must be exactly 10 digits");
+      return;
+    }
+
+    // 🔐 Password validation
+    if (!validatePassword(password)) {
+      setError(
+        "Password must be at least 8 characters and include uppercase, lowercase, number, and special character"
+      );
+      return;
+    }
+
+    setError("");
+    // ✅ Navigate to Login page after successful signup
+    navigate("/login");
   };
 
   return (
@@ -17,28 +44,68 @@ export default function SignupPage() {
         </h2>
 
         <form className="space-y-4 mt-6" onSubmit={handleSubmit}>
-          {[
-            { label: "Full Name", type: "text" },
-            { label: "Phone number", type: "text" },
-            { label: "Email address", type: "email" },
-            { label: "Password", type: "password" },
-            { label: "Company name", type: "text" },
-          ].map((f) => (
-            <div key={f.label}>
-              <label className="block text-sm text-gray-700 font-medium mb-1">
-                {f.label} *
-              </label>
-              <input
-                type={f.type}
-                placeholder={`Enter ${f.label.toLowerCase()}`}
-                required
-                className="w-full border border-gray-300 rounded-lg p-2 outline-none focus:ring-2 focus:ring-[#6C63FF] focus:border-transparent"
-              />
-            </div>
-          ))}
+          <div>
+            <label className="block text-sm font-medium mb-1">
+              Full Name *
+            </label>
+            <input
+              type="text"
+              required
+              className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-[#6C63FF]"
+            />
+          </div>
 
           <div>
-            <p className="text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium mb-1">
+              Phone number *
+            </label>
+            <input
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder="Enter 10 digit number"
+              required
+              className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-[#6C63FF]"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1">
+              Email address *
+            </label>
+            <input
+              type="email"
+              required
+              className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-[#6C63FF]"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1">
+              Password *
+            </label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-[#6C63FF]"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1">
+              Company name *
+            </label>
+            <input
+              type="text"
+              required
+              className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-[#6C63FF]"
+            />
+          </div>
+
+          <div>
+            <p className="text-sm font-medium mb-2">
               Are you an Agency? *
             </p>
             <div className="flex gap-6">
@@ -46,28 +113,30 @@ export default function SignupPage() {
                 <input
                   type="radio"
                   name="agency"
-                  value="yes"
                   defaultChecked
-                  required
                   className="accent-[#6C63FF]"
                 />
-                <span>Yes</span>
+                Yes
               </label>
               <label className="flex items-center gap-2">
                 <input
                   type="radio"
                   name="agency"
-                  value="no"
                   className="accent-[#6C63FF]"
                 />
-                <span>No</span>
+                No
               </label>
             </div>
           </div>
 
+          {/* ❗ Error Message */}
+          {error && (
+            <p className="text-red-500 text-sm font-medium">{error}</p>
+          )}
+
           <button
             type="submit"
-            className="w-full bg-[#6C63FF] text-black font-medium py-2 rounded-lg mt-4 hover:bg-[#5b54e0] transition"
+            className="w-full bg-[#6C63FF] text-black font-medium py-2 rounded-lg hover:bg-[#5b54e0]"
           >
             Create Account
           </button>
