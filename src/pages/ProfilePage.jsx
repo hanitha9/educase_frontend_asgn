@@ -16,6 +16,10 @@ export default function ProfilePage() {
     "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80"
   );
 
+  const [aboutMe, setAboutMe] = useState(
+    "Lorem Ipsum Dolor Sit Amet, Consetetur Sadipscing Elitr, Sed Diam Nonumy Eirmod Tempor Invidunt Ut Labore Et Dolore Magna Aliquam Erat. Sed Diam"
+  );
+
   // Handle profile picture upload
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -48,7 +52,6 @@ export default function ProfilePage() {
               className="w-24 h-24 rounded-full object-cover border-2 border-gray-300"
             />
 
-            {/* Hidden Input */}
             <input
               type="file"
               accept="image/*"
@@ -89,14 +92,15 @@ export default function ProfilePage() {
         {/* Divider */}
         <div className="border-b border-dashed border-gray-300 mb-5"></div>
 
-        {/* About Section */}
+        {/* About Me Section */}
         <div>
           <h3 className="text-xl font-semibold mb-2">About Me</h3>
-          <p className="text-gray-700 text-sm leading-relaxed">
-            Lorem Ipsum Dolor Sit Amet, Consetetur Sadipscing Elitr, Sed Diam
-            Nonumy Eirmod Tempor Invidunt Ut Labore Et Dolore Magna Aliquam Erat.
-            Sed Diam
-          </p>
+
+          <textarea
+            value={aboutMe}
+            onChange={(e) => setAboutMe(e.target.value)}
+            className="w-full h-32 p-3 border border-gray-300 rounded-lg text-sm text-gray-700 resize-none focus:outline-none focus:ring-2 focus:ring-purple-500"
+          />
         </div>
 
       </div>
