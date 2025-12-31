@@ -144,11 +144,14 @@ export default function SignupPage() {
 
           {/* Button */}
           <button
-            type="submit"
-            className="w-full bg-[#6C63FF] text-white font-semibold py-3 rounded-lg hover:bg-[#5a52e0] transition"
-          >
-            Create Account
-          </button>
+  type="submit"
+  style={{ backgroundColor: "#6C63FF", color: "white" }}
+  className="w-full font-semibold py-3 rounded-lg"
+>
+  Create Account
+</button>
+
+           
         </form>
       </div>
     </div>
