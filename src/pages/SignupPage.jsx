@@ -30,7 +30,7 @@ export default function SignupPage() {
     }
 
     setError("");
-    navigate("/login");
+    navigate("/LoginPage");
   };
 
   return (
